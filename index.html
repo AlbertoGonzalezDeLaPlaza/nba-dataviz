@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NBA Data Visualization</title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="./js/start.js"></script>
+    <script src="./js/menuInteraction.js"></script>
+    <script src="./js/donutchart.js"></script>
+    <script src="./js/heatmap.js"></script>
+    <script src="./js/refresh_charts.js"></script>
+    <link rel="icon" href="images/NBA.png" sizes="16x16"   type="image/png" > 
+  </head>
+
+  <body>
+    <div id="chart">
+      <div id="header">
+        <div id="teamSelected">
+          <div id="teamSelectedDonut">
+            <script type="text/javascript">
+              start();
+            </script>
+          </div>
+
+          <div id="teamSelectedName" title="Equipo Seleccionado">
+            <p id="teamSelectedNameText">BOSTON CELTICS</p>
+          </div>
+        </div>
+
+        <div id="seasonSelected">
+          <div id="selectSeasonTitle">SELECCIONA TEMPORADA:</div>
+
+          <div
+            id="season_2019_20"
+            style="cursor: pointer"
+            onclick="selectSeason2019_20(this)"
+          >
+            TEMPORADA 2019-20
+          </div>
+
+          <div
+            id="season_2020_21"
+            style="cursor: pointer"
+            onclick="selectSeason2020_21(this)"
+          >
+            TEMPORADA 2020-21
+          </div>
+        </div>
+      </div>
+
+      <div id="main_body">
+        <div id="heatmap">
+          <div id="heatmap_title">
+            ESTADÍSTICAS DEL TOP 10 JUGADORES DEL EQUIPO SELECCIONADO POR
+            PARTIDO
+          </div>
+
+          <div id="heatmap_grafico"></div>
+          Autor: <a href="https://www.linkedin.com/in/alberto-gonzalez-de-la-plaza/">
+             Alberto González de la Plaza
+          </a>
+          
+          <br> Fuentes:
+          <a href="https://www.kaggle.com/nicklauskim/nba-per-game-stats-201920?select=nba_2020_per_game.csv">
+            Heatmap Data 2019-20
+          </a>
+          /
+          <a href="https://www.kaggle.com/umutalpaydn/nba-20202021-season-player-stats"> Heatmap Data 2020-21</a>
+          /
+          <a href="https://es.wikipedia.org/wiki/Temporada_2019-20_de_la_NBA"> DonutChart Data 2019-20</a>
+          /
+          <a href=" https://es.wikipedia.org/wiki/Temporada_2020-21_de_la_NBA"> DonutChart Data 2020-21</a>
+  
+        </div>
+
+        <div id="teams">
+          <div id="teams_row1_title" class="division_text">
+            DIVISIÓN ATLÁNTICO
+          </div>
+
+          <div id="teams_row1" class="teams_row">
+            <div id="BOS" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/BOS.png"
+                title="BOSTON CELTICS"
+                alt="BOS"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="BRK" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/BRK.png"
+                title="BROOKLYN NETS"
+                alt="BRK"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="NYK" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/NYK.png"
+                title="NEW YORK KNICKS"
+                alt="NYK"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="PHI" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/PHI.png"
+                title="PHILADELPHIA 76ers"
+                alt="PHI"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="TOR" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/TOR.png"
+                title="TORONTO RAPTORS"
+                alt="TOR"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+
+          <div id="teams_row2_title" class="division_text">
+            DIVISIÓN CENTRAL
+          </div>
+
+          <div id="teams_row2" class="teams_row">
+            <div id="CHI" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/CHI.png"
+                title="CHICAGO BULLS"
+                alt="CHI"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="CLE" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/CLE.png"
+                title="CLEVELAND CAVALIERS"
+                alt="CLE"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="DET" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/DET.png"
+                title="DETROIT PISTONS"
+                alt="DET"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="IND" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/IND.png"
+                title="INDIANA PACERS"
+                alt="IND"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="MIL" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/MIL.png"
+                title="MILWAUKEE BUCKS"
+                alt="MIL"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+
+          <div id="teams_row3_title" class="division_text">
+            DIVISIÓN SURESTE
+          </div>
+
+          <div id="teams_row3" class="teams_row">
+            <div id="ATL" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/ATL.png"
+                title="ATLANTA HAWKS"
+                alt="ATL"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="CHO" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/CHO.png"
+                title="CHARLOTTE HORNETS"
+                alt="CHO"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="MIA" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/MIA.png"
+                title="MIAMI HEAT"
+                alt="MIA"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="ORL" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/ORL.png"
+                title="ORLANDO MAGIC"
+                alt="ORL"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="WAS" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/WAS.png"
+                title="WASHINGTON WIZARDS"
+                alt="WAS"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+
+          <div id="teams_row4_title" class="division_text">
+            DIVISIÓN NOROESTE
+          </div>
+
+          <div id="teams_row4" class="teams_row">
+            <div id="DEN" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/DEN.png"
+                title="DENVER NUGGETS"
+                alt="DEN"
+                onclick="selectTeam(this)"
+              />
+            </div>
+
+            <div id="MIN" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/MIN.png"
+                title="MINNESOTA TIMBERWOLVES"
+                alt="MIN"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="OKC" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/OKC.png"
+                title="OKLAHOMA CITY THUNDER"
+                alt="OKC"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="POR" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/POR.png"
+                title="PORTLAND TRAIL BLAZERS"
+                alt="POR"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="UTA" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/UTA.png"
+                title="UTAH JAZZ"
+                alt="UTA"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+
+          <div id="teams_row5_title" class="division_text">
+            DIVISIÓN PACÍFICO
+          </div>
+          <div id="teams_row5" class="teams_row">
+            <div id="GSW" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/GSW.png"
+                title="GOLDEN STATE WARRIORS"
+                alt="GSW"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="LAC" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/LAC.png"
+                title="LOS ANGELES CLIPPERS"
+                alt="LAC"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="LAL" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/LAL.png"
+                title="LOS ANGELES LAKERS"
+                alt="LAL"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="PHO" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/PHO.png"
+                title="PHOENIX SUNS"
+                alt="PHO"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="SAC" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/SAC.png"
+                title="SACRAMENTO KINGS"
+                alt="SAC"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+
+          <div id="teams_row6_title" class="division_text">
+            DIVISIÓN SUROESTE
+          </div>
+          <div id="teams_row6" class="teams_row">
+            <div id="DAL" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/DAL.png"
+                title="DALLAS MAVERICKS"
+                alt="DAL"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="HOU" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/HOU.png"
+                title="HOUSTON ROCKETS"
+                alt="HOU"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="MEM" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/MEM.png"
+                title="MEMPHIS GRIZZLIES"
+                alt="MEM"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="NOP" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/NOP.png"
+                title="NEW ORLEANS PELICANS"
+                alt="NOP"
+                onclick="selectTeam(this)"
+              />
+            </div>
+            <div id="SAS" class="div_team">
+              <img
+                class="picture_team"
+                style="cursor: pointer"
+                src="images/SAS.png"
+                title="SAN ANTONIO SPURS"
+                alt="SAS"
+                onclick="selectTeam(this)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

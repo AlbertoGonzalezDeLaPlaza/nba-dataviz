@@ -1,0 +1,265 @@
+#chart {
+  /*
+  Tamaño del todo el grafico
+  */
+  width: 1720px;
+  height: 1000px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: white;
+}
+#header {
+  /*
+  Cabecera (engloba donutchart, nombre del equipo seleccionado y el menu de seleccionar temporada)
+  */
+  height: 19%;
+  width: 100%;
+}
+
+#teamSelected {
+  /*
+  Donutchart y nombre del equipo seleccionado
+  */
+  height: 100%;
+  width: 60%;
+  float: left;
+  margin-left: 5%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(134, 122, 122);
+}
+
+#teamSelectedDonut {
+  /*
+  Donuchart
+  */
+  height: 100%;
+  width: 28%;
+  float: left;
+}
+
+#figTeamSelected {
+  /*
+  Imagen dentro del donutchart
+  */
+  height: 50%;
+  width: 50%;
+  left: 0;
+}
+
+#teamSelectedName {
+  /*
+  Div Nombre del equipo seleccionado
+  */
+  height: 100%;
+  width: 72%;
+  float: right;
+
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  font-weight: bold;
+  color: white;
+
+  background: linear-gradient(110deg, green 70%, white, grey);
+}
+#teamSelectedNameText {
+  /*
+  Texto del Nombre del equipo seleccionado
+  */
+  font-size: 290%;
+
+  -webkit-text-stroke: 0.5px black;
+}
+
+#seasonSelected {
+  /*
+  Menu para seleccionar temporada
+  */
+  margin-left: 1%;
+  height: 100%;
+  width: 28%;
+  float: right;
+  margin-right: 5%;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(134, 122, 122);
+}
+
+#selectSeasonTitle {
+  /*
+ Titulo de seleccionar temporada
+  */
+  background-color: black;
+  align-items: center;
+  display: flex;
+  height: 21%;
+  width: 100%;
+  justify-content: center;
+  font-size: 130%;
+  font-weight: bold;
+  color: white;
+}
+
+#season_2019_20 {
+  /*
+  Boton temporada 2019-2020
+  */
+  height: 79%;
+  width: 48%;
+  float: left;
+  font-size: 180%;
+
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  font-weight: bold;
+  color: white;
+
+  background-color: rgb(73, 176, 216);
+}
+
+#season_2020_21 {
+  /*
+  Boton temporada 2020-2021
+  */
+  height: 79%;
+  width: 48%;
+  float: right;
+  font-size: 180%;
+
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  font-weight: bold;
+  color: rgb(73, 176, 216);
+
+  background-color: white;
+}
+
+#main_body {
+  /*
+  Main body engloba(heatmap y menu de seleccion de equipos)
+  */
+  height: 81%;
+  width: 100%;
+}
+
+#heatmap {
+  /*
+  Heatmap engloba el titulo del heatmap y el grafico del heatmap
+  */
+  height: 85%;
+  width: 60%;
+  float: left;
+  margin-left: 5%;
+  margin-top: 1%;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(134, 122, 122);
+}
+
+#heatmap_title {
+  /*
+  Titulo del heatmap
+  */
+  background-color: black;
+  align-items: center;
+  display: flex;
+  height: 5%;
+  width: 100%;
+  justify-content: center;
+  font-size: 130%;
+  font-weight: bold;
+  color: white;
+}
+#heatmap_grafico {
+  /*
+  Grafico del heatmap
+  */
+  height: 95%;
+  padding-left: 1%;
+  width: 99%;
+}
+
+#teams {
+  /*
+  Menu de seleccion de equipos  
+  */
+  height: 75%;
+  width: 28%;
+  margin-top: 1%;
+  float: right;
+  margin-right: 5%;
+}
+
+.division_text {
+  /*
+  Titulos de division de la NBA
+  */
+  align-items: center;
+  display: flex;
+  height: 3%;
+  width: 100%;
+  justify-content: center;
+  font-size: 100%;
+  font-weight: bold;
+  color: white;
+  background-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(134, 122, 122);
+}
+
+.teams_row {
+  /*
+  Fila con 5 equipos de una division
+  */
+  height: 15%;
+  width: 100%;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(134, 122, 122);
+}
+.div_team {
+  /*
+  Cada div con la imagen de un equipo
+  */
+  height: 100%;
+  width: 18%;
+  display: inline-block;
+  /* Esto provoca una transicion cuando se ilumina el logo*/
+  transition: all 0.4s ease-in-out;
+  margin-left: 1%;
+}
+
+.div_team:hover {
+  /*
+  Cuando pasas por encima de un logo se ilumina un circulo amarillo 
+  */
+  background: radial-gradient(rgb(245, 245, 78), white 78%);
+}
+
+
+.picture_team:hover {
+  /*Cuando pasas el raton por encima se colorea la imagen*/
+  filter: grayscale(0%);
+}
+.picture_team {
+  /* Cada imagen de los equipos de la NBA*/
+  transition: all 0.4s ease-in-out;
+  height: 89%;
+  width: 100%;
+  margin-top: 3%;
+  /*Aparace poco iluminada para que cuanod pase el raton resalte*/
+  filter: grayscale(60%);
+  
+}
